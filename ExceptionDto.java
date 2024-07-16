@@ -131,4 +131,46 @@ public class ExceptionDto {
     public void setDetails(List<String> details) {
         this.details = details;
     }
+
+    // New methods
+
+    public void appendDetails(List<String> additionalDetails) {
+        if (this.details == null) {
+            this.details = new ArrayList<>();
+        }
+        this.details.addAll(additionalDetails);
+    }
+
+    public void appendDetail(String additionalDetail) {
+        if (this.details == null) {
+            this.details = new ArrayList<>();
+        }
+        this.details.add(additionalDetail);
+    }
+
+    public void removeDetail(String detail) {
+        if (this.details != null) {
+            this.details.remove(detail);
+        }
+    }
+
+    public int getDetailCount() {
+        return this.details != null ? this.details.size() : 0;
+    }
+
+    public boolean hasErrorCode() {
+        return this.errorCode != null && !this.errorCode.isEmpty();
+    }
+
+    public boolean hasResolution() {
+        return this.resolution != null && !this.resolution.isEmpty();
+    }
+
+    public boolean hasPath() {
+        return this.path != null && !this.path.isEmpty();
+    }
+
+    public boolean hasMessage() {
+        return this.message != null && !this.message.isEmpty();
+    }
 }
