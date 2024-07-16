@@ -102,4 +102,42 @@ public class ProductController {
         List<Product> products = productService.getTopBestsellingProducts(topN);
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
+
+    // Additional methods
+
+    @GetMapping("/featured")
+    public ResponseEntity<List<Product>> getFeaturedProducts() {
+        List<Product> products = productService.getFeaturedProducts();
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    @GetMapping("/new-arrivals")
+    public ResponseEntity<List<Product>> getNewArrivalProducts() {
+        List<Product> products = productService.getNewArrivalProducts();
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    @GetMapping("/recommended")
+    public ResponseEntity<List<Product>> getRecommendedProducts() {
+        List<Product> products = productService.getRecommendedProducts();
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    @GetMapping("/similar/{productId}")
+    public ResponseEntity<List<Product>> getSimilarProducts(@PathVariable("productId") Long productId) {
+        List<Product> products = productService.getSimilarProducts(productId);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    @GetMapping("/price-range")
+    public ResponseEntity<List<Product>> getProductsInPriceRange(@RequestParam("min") double minPrice, @RequestParam("max") double maxPrice) {
+        List<Product> products = productService.getProductsInPriceRange(minPrice, maxPrice);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    @GetMapping("/discounted")
+    public ResponseEntity<List<Product>> getDiscountedProducts() {
+        List<Product> products = productService.getDiscountedProducts();
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
 }
