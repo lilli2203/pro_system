@@ -1,6 +1,7 @@
 package dev.nlilli.productservice_sst.models;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class Category {
     private Long id;
@@ -69,6 +70,29 @@ public class Category {
         setDescription(description);
     }
 
+
+    public boolean isNewCategory() {
+        return id == null;
+    }
+
+    public boolean isSameCategory(Category other) {
+        return other != null && Objects.equals(id, other.id);
+    }
+
+    public boolean hasSameDetails(Category other) {
+        return other != null && Objects.equals(title, other.title) && Objects.equals(description, other.description);
+    }
+
+    public void resetUpdatedAt() {
+        this.updatedAt = this.createdAt;
+    }
+
+    public String getCategoryInfo() {
+        return String.format("Category ID: %d%nTitle: %s%nDescription: %s%nCreated At: %s%nUpdated At: %s",
+                id, title, description, createdAt, updatedAt);
+    }
+
+
     @Override
     public String toString() {
         return "Category{" +
@@ -80,17 +104,24 @@ public class Category {
                 '}';
     }
 
+
     public static void main(String[] args) {
         Category category = new Category(1L, "Electronics", "Category for electronic products");
         System.out.println("Created category: " + category);
 
         try {
-            category.setTitle(null); 
+            category.setTitle(null); g
         } catch (IllegalArgumentException e) {
             System.err.println("Error: " + e.getMessage());
         }
 
         category.updateCategory("Mobile Phones", "Category for mobile phones");
         System.out.println("Updated category: " + category);
+
+        Category category2 = new Category(2L, "Clothing", "Category for clothing products");
+        System.out.println("\nCreated category 2: " + category2);
+        System.out.println("Is category 2 new? " + category2.isNewCategory());
+        System.out.println("Is category 1 the same as category 2? " + category.isSameCategory(category2));
+        System.out.println("Does category 1 have the same details as category 2? " + category.hasSameDetails(category2));
     }
 }
