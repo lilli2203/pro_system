@@ -1,4 +1,4 @@
-package dev.naga.productservice_sst.dtos;
+package dev.lilli.productservice_sst.dtos;
 
 import lombok.Getter;
 import lombok.Setter;
