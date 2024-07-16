@@ -19,6 +19,7 @@ public class Product {
     private String weight; 
     private String supplier; 
 
+    // Constructors
     public Product() {
     }
 
@@ -45,6 +46,8 @@ public class Product {
         this.weight = weight;
         this.supplier = supplier;
     }
+
+    // Business logic methods
 
     public String displayProductInfo() {
         return String.format("Product ID: %d%nTitle: %s%nDescription: %s%nPrice: $%.2f%nCategory: %s%nBrand: %s%nRating: %.1f%nStock: %d%nDimensions: %s%nWeight: %s%nSupplier: %s",
@@ -77,6 +80,8 @@ public class Product {
         return String.format("Product: %s%nPrice: $%.2f%nRating: %.1f", title, price, rating);
     }
 
+    // Static factory methods
+
     public static Product createSimpleProduct(Long id, String title, double price, Category category) {
         return new Product(id, title, null, price, category, null);
     }
@@ -84,6 +89,8 @@ public class Product {
     public static Product createDetailedProduct(Long id, String title, String description, double price, Category category, String image, double rating, int stock, String brand, String dimensions, String weight, String supplier) {
         return new Product(id, title, description, price, category, image, rating, stock, brand, dimensions, weight, supplier);
     }
+
+    // Overridden methods
 
     @Override
     public String toString() {
@@ -101,5 +108,74 @@ public class Product {
                 ", weight='" + weight + '\'' +
                 ", supplier='" + supplier + '\'' +
                 '}';
+    }
+
+    // Additional methods and properties
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public void setRating(double rating) {
+        if (rating >= 0 && rating <= 5) {
+            this.rating = rating;
+        }
+    }
+
+    public void setStock(int stock) {
+        if (stock >= 0) {
+            this.stock = stock;
+        }
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public void setDimensions(String dimensions) {
+        this.dimensions = dimensions;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+
+    public void setSupplier(String supplier) {
+        this.supplier = supplier;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public String getDimensions() {
+        return dimensions;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public String getSupplier() {
+        return supplier;
     }
 }
