@@ -64,21 +64,44 @@ public class ProductNotFoundException extends RuntimeException {
         System.out.println("Escalating issue for product ID: " + productId);
     }
 
-    public static void main(String[] args) {
-        try {
-            throw new ProductNotFoundException("12345", "Custom error message");
-        } catch (ProductNotFoundException e) {
-            e.logException();
-            e.notifyUser();
-            e.retryOperation();
-            e.escalateIssue();
-        }
+    // Additional methods for error handling and customization
+    public void handleIssue() {
+        System.out.println("Handling issue for product ID: " + productId);
+    }
 
-        try {
-            throw new ProductNotFoundException("67890");
-        } catch (ProductNotFoundException e) {
-            e.logException();
-            e.notifyUser();
-        }
+    public void logToDatabase() {
+        System.out.println("Logging exception to database for product ID: " + productId);
+    }
+
+    public void performAudit() {
+        System.out.println("Performing audit for product ID: " + productId);
+    }
+
+    public void sendEmailNotification() {
+        System.out.println("Sending email notification for product ID: " + productId);
+    }
+
+    public void escalateToSupport() {
+        System.out.println("Escalating issue to support team for product ID: " + productId);
+    }
+
+    public void handleRetryLogic() {
+        System.out.println("Implementing retry logic for product ID: " + productId);
+    }
+
+    public void handleEscalation() {
+        System.out.println("Handling escalation process for product ID: " + productId);
+    }
+
+    public void logToAuditTrail() {
+        System.out.println("Logging exception to audit trail for product ID: " + productId);
+    }
+
+    public void performAnalysis() {
+        System.out.println("Performing analysis for product ID: " + productId);
+    }
+
+    public void handleResolution() {
+        System.out.println("Handling resolution for product ID: " + productId);
     }
 }
