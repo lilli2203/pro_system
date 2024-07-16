@@ -1,10 +1,10 @@
-package dev.lilli
-    .productservice_sst.dtos;
+package dev.lilli.productservice_sst.dtos;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -84,11 +84,16 @@ public class ExceptionDto {
     }
 
     public void addDetail(String detail) {
+        if (this.details == null) {
+            this.details = new ArrayList<>();
+        }
         this.details.add(detail);
     }
 
     public void clearDetails() {
-        this.details.clear();
+        if (this.details != null) {
+            this.details.clear();
+        }
     }
 
     public boolean hasDetails() {
@@ -97,5 +102,33 @@ public class ExceptionDto {
 
     public String getFirstDetail() {
         return this.details != null && !this.details.isEmpty() ? this.details.get(0) : null;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setResolution(String resolution) {
+        this.resolution = resolution;
+    }
+
+    public void setErrorCode(String errorCode) {
+        this.errorCode = errorCode;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setDetails(List<String> details) {
+        this.details = details;
     }
 }
