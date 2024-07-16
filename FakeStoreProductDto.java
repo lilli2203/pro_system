@@ -18,8 +18,8 @@ public class FakeStoreProductDto {
     private String dimensions;
     private String weight;
     private String supplier;
-    private boolean featured; 
-    private boolean available; 
+    private boolean featured;
+    private boolean available;
 
     // Constructors
     public FakeStoreProductDto() {
@@ -131,5 +131,62 @@ public class FakeStoreProductDto {
                 ", featured=" + featured +
                 ", available=" + available +
                 '}';
+    }
+
+    // New methods
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public void setDimensions(String dimensions) {
+        this.dimensions = dimensions;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+
+    public void setSupplier(String supplier) {
+        this.supplier = supplier;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+//need to add things here will do it later
+    
+    public void trackView() {
+    }
+
+    public void logUpdate() {
+    }
+
+    public void archiveProduct() {
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 }
