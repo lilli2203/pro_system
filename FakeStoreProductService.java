@@ -7,9 +7,14 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Service
 public class FakeStoreProductService implements ProductService {
+
+    private final ExecutorService executorService = Executors.newFixedThreadPool(10); // New executor service
 
     @Override
     public Product getProductById(Long id) {
@@ -66,9 +71,17 @@ public class FakeStoreProductService implements ProductService {
         }
     }
 
-    public Product getProductByIdAsync(Long id) {
-        RestTemplate restTemplate = new RestTemplate();
-        FakeStoreProductDto fakeStoreProductDto = restTemplate.getForObject("http://fakestoreapi.com/products/" + id, FakeStoreProductDto.class);
-        return convertFakeStoreProductDtoToProduct(fakeStoreProductDto);
+    public CompletableFuture<Product> getProductByIdAsync(Long id) {
+        return CompletableFuture.supplyAsync(() -> {
+            RestTemplate restTemplate = new RestTemplate();
+            FakeStoreProductDto fakeStoreProductDto = restTemplate.getForObject("http://fakestoreapi.com/products/" + id, FakeStoreProductDto.class);
+            return convertFakeStoreProductDtoToProduct(fakeStoreProductDto);
+        }, executorService);
     }
+
+    public void shutdownExecutorService() {
+        executorService.shutdown();
+    }
+
+
 }
