@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-// This controller is capable to host HTTP APIs
 @RestController
-// localhost:8080/products -> ProductController
 @RequestMapping("/products")
 public class ProductController {
 
@@ -73,5 +71,35 @@ public class ProductController {
             dto.setMessage("Failed to delete product");
             return new ResponseEntity<>(dto, HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping("/category/{categoryId}")
+    public ResponseEntity<List<Product>> getProductsByCategory(@PathVariable("categoryId") Long categoryId) {
+        List<Product> products = productService.getProductsByCategory(categoryId);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Product>> searchProducts(@RequestParam("keyword") String keyword) {
+        List<Product> products = productService.searchProducts(keyword);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    @GetMapping("/sale")
+    public ResponseEntity<List<Product>> getProductsOnSale() {
+        List<Product> products = productService.getProductsOnSale();
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    @GetMapping("/stock")
+    public ResponseEntity<List<Product>> getOutOfStockProducts() {
+        List<Product> products = productService.getOutOfStockProducts();
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    @GetMapping("/top/{topN}")
+    public ResponseEntity<List<Product>> getTopBestsellingProducts(@PathVariable("topN") int topN) {
+        List<Product> products = productService.getTopBestsellingProducts(topN);
+        return new ResponseEntity<>(products, HttpStatus.OK);
     }
 }
