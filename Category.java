@@ -23,6 +23,7 @@ public class Category {
         this.updatedAt = this.createdAt;
     }
 
+    // Getters and setters
     public Long getId() {
         return id;
     }
@@ -36,6 +37,9 @@ public class Category {
     }
 
     public void setTitle(String title) {
+        if (title == null || title.trim().isEmpty()) {
+            throw new IllegalArgumentException("Title cannot be null or empty");
+        }
         this.title = title;
         this.updatedAt = LocalDateTime.now();
     }
@@ -45,6 +49,9 @@ public class Category {
     }
 
     public void setDescription(String description) {
+        if (description == null || description.trim().isEmpty()) {
+            throw new IllegalArgumentException("Description cannot be null or empty");
+        }
         this.description = description;
         this.updatedAt = LocalDateTime.now();
     }
@@ -55,6 +62,11 @@ public class Category {
 
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
+    }
+
+    public void updateCategory(String title, String description) {
+        setTitle(title);
+        setDescription(description);
     }
 
     @Override
@@ -68,15 +80,15 @@ public class Category {
                 '}';
     }
 
-    public void updateCategory(String title, String description) {
-        this.title = title;
-        this.description = description;
-        this.updatedAt = LocalDateTime.now();
-    }
-
     public static void main(String[] args) {
         Category category = new Category(1L, "Electronics", "Category for electronic products");
         System.out.println("Created category: " + category);
+
+        try {
+            category.setTitle(null); 
+        } catch (IllegalArgumentException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
 
         category.updateCategory("Mobile Phones", "Category for mobile phones");
         System.out.println("Updated category: " + category);
