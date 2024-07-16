@@ -12,15 +12,16 @@ public class FakeStoreProductDto {
     private double price;
     private String category;
     private String image;
-    private double rating; 
-    private int stock; 
-    private String brand; 
-    private String dimensions; 
-    private String weight; 
-    private String supplier; 
-    
+    private double rating;
+    private int stock;
+    private String brand;
+    private String dimensions;
+    private String weight;
+    private String supplier;
+    private boolean featured; 
+    private boolean available; 
 
-    // Constructor
+    // Constructors
     public FakeStoreProductDto() {
     }
 
@@ -48,6 +49,7 @@ public class FakeStoreProductDto {
         this.supplier = supplier;
     }
 
+    // Additional methods
     public String displayProductInfo() {
         return String.format("Product ID: %d%nTitle: %s%nDescription: %s%nPrice: $%.2f%nCategory: %s%nBrand: %s%nRating: %.1f%nStock: %d%nDimensions: %s%nWeight: %s%nSupplier: %s",
                 id, title, description, price, category, brand, rating, stock, dimensions, weight, supplier);
@@ -87,6 +89,30 @@ public class FakeStoreProductDto {
         return new FakeStoreProductDto(id, title, description, price, category, image, rating, stock, brand, dimensions, weight, supplier);
     }
 
+    public void setFeatured(boolean featured) {
+        this.featured = featured;
+    }
+
+    public boolean isFeatured() {
+        return featured;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void markAsAvailable() {
+        this.available = true;
+    }
+
+    public void markAsUnavailable() {
+        this.available = false;
+    }
+
     @Override
     public String toString() {
         return "FakeStoreProductDto{" +
@@ -102,6 +128,8 @@ public class FakeStoreProductDto {
                 ", dimensions='" + dimensions + '\'' +
                 ", weight='" + weight + '\'' +
                 ", supplier='" + supplier + '\'' +
+                ", featured=" + featured +
+                ", available=" + available +
                 '}';
     }
 }
